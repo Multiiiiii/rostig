@@ -60,6 +60,42 @@ fn main() {
     let (s2, len) = calculate_length(s1);
     println!("The length of '{}' is {}.", s2, len);
 
+    let s1 = String::from("hello⁹");
+    let len = calculate_length_with_pointer(&s1);
+    println!("The length of '{}' is {}.", s1, len);
+
+    let mut s = String::from("hello¹⁰");
+
+    change(&mut s);
+
+    println!("{}",s);
+
+    let s = String::from("hello¹¹");
+    let len = calculate_length_with_pointer(&s);
+    println!("The length of '{}' is {}.", s, len);
+
+    let mut s = String::from("hello¹²");
+
+    {
+        let r1 = &mut s;
+        change(r1);
+    } // r1 goes out of scope here, so we can make a new reference with no problems.
+    let r2 = &mut s;
+    change(r2);
+    println!("{}", s);
+
+    let mut s = String::from("hello¹³");
+
+    let r1 = &s; // no problem
+    let r2 = &s; // no problem
+    println!("{} and {}", r1, r2); //variables r1 and r2 will not be used after this point
+    let r3 = &mut s; //no problem
+    change(r3);
+    println!("{}", r3);
+
+    let something = no_dangle();
+    println!("{}", something);
+   
     
 } 
 
@@ -89,4 +125,17 @@ fn takes_and_gives_back(a_string: String) -> String { // a_string comes into sco
 fn calculate_length(s: String) -> (String, usize) {
     let length = s.len(); //len() returns the length of a String
     (s, length)
+}
+
+fn calculate_length_with_pointer(s: &String) -> usize { //s is a reference to a String
+    s.len() 
+} // Here, s goes out of scrope. But because it does not have ownership of what it refers to, it is not dropped.
+
+fn change(some_string: &mut String) {
+    some_string.push_str(",world☣");
+}
+
+fn no_dangle() -> String { 
+    let s = String::from("hello¹⁴");
+    s
 }
