@@ -1,20 +1,20 @@
-enum IpAddrKand {
+enum IpAddrKind {
     V4,
     V6,
 }
 
 struct IpAddr {
     kind: IpAddrKind,
-    address: Sting,
+    address: String,
 }
 
-enum IpAddr {
+enum Ip_Addr {
     V4(String),
     V6(String),
 }
 
-enum IpAddr2 {
-    V4(u8,u8,u8),
+enum Ip_Addr2 {
+    V4(u8,u8,u8,u8),
     V6(String),
 }
 
@@ -25,7 +25,7 @@ struct Ipv6Addr{
 struct Ipv4Addr{
     // --snip--
 }
-enum IpAddrStr {
+enum Ip_AddrStr {
     V4(Ipv4Addr),
     V6(Ipv6Addr),
 }
@@ -60,19 +60,19 @@ fn main() {
 
     let home = IpAddr {
         kind: IpAddrKind::V4,
-        address: String::from("127.0.0.1")
-    }
+        address: String::from("127.0.0.1"),
+    };
 
     let loopback = IpAddr {
         kind: IpAddrKind::V6,
-        addess: String::from("::1"),
-    }
+        address: String::from("::1"),
+    };
 
-    let home =IpAddr::V1(String::from("127.0.1"));
+    let home =IpAddr::V4(String::from("127.0.1"));
     let loopback = IpAddr::V6(String::from("::1"));
 
-    let home = IpAddr2::V4(127,0,0,1);
-    let loopback = IpAddr2::V6(String::from("::1"));
+    let home = Ip_Addr2::V4(127,0,0,1);
+    let loopback = Ip_Addr2::V6(String::from("::1"));
 
     let m = Message::Write(String::from("hello"));
     m.call();
