@@ -68,8 +68,8 @@ fn main() {
         address: String::from("::1"),
     };
 
-    let home =IpAddr::V4(String::from("127.0.1"));
-    let loopback = IpAddr::V6(String::from("::1"));
+    let home =Ip_Addr::V4(String::from("127.0.1"));
+    let loopback = Ip_Addr::V6(String::from("::1"));
 
     let home = Ip_Addr2::V4(127,0,0,1);
     let loopback = Ip_Addr2::V6(String::from("::1"));
