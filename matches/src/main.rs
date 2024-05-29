@@ -22,7 +22,29 @@ fn main() {
     let six = plus_one(five);
     let nono =plus_one(None);
 
+    let dice_roll =9;
+    match dice_roll {
+        3 => add_cancy_hat(),
+        7 => remove_fancy_hat(),
+        other => move_player(other),
+    }
+    let dice_roll: u8 = 7;
+    match dice_roll {
+        3 => add_cancy_hat(),
+        7 => remove_fancy_hat(),
+        _ => reloll(),
+    
+    }
+
 }
+
+fn reloll() {}
+
+fn move_player(num_spaces: u8) {}
+
+fn remove_fancy_hat() {}
+
+fn add_cancy_hat() {}
 
 fn value_in_cents(coin: Coin) -> u8 {
     match coin {
