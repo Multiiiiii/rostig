@@ -1,4 +1,6 @@
 use futures::executor::block_on;
+struct song;
+
 fn main() {
     let future = do_something();
     block_on(future); //furure is run and "hellox world" is printed
@@ -14,10 +16,11 @@ async fn do_something() {
     println!("Hello, world!");
 }
 
-async fn learn_song() -> Song {
+async fn learn_song() -> song {
     /* */
+    todo!()
 }
-async fn sing_song(song: Song) {
+async fn sing_song(song: song) {
     /* */
 }
 async fn dance() {
